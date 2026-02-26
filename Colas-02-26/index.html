@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robotic Arm Queue</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      background: #fafafa;
+      color: #333;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #333;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    #counter {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    small {
+      display: block;
+      color: #888;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .card {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .card.next {
+      border-left: 4px solid #007bff;
+      background-color: #f0f7ff;
+    }
+
+    .next-label {
+      font-weight: bold;
+      color: #007bff;
+      font-size: 0.85rem;
+      margin-right: 8px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 4px;
+      font-size: 0.9rem;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    input,
+    select {
+      padding: 6px;
+      margin: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    #form-container {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+
+    #form-container input,
+    #form-container select {
+      display: block;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    #form-container button {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    #log-list {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+
+    .log-entry {
+      padding: 4px 0;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <h2>🤖 Robotic Arm Queue</h2>
+    <p id="counter">Commands in queue: 5</p>
+    <small>FIFO: Commands execute in the exact order they were sent.</small>
+  </section>
+
+  <section>
+    <h3>Queue</h3>
+    <div id="queue-list"></div>
+  </section>
+
+  <section>
+    <button id="btn-execute">▶ Execute Next</button>
+    <button id="btn-toggle-form">➕ Add Command</button>
+
+    <div id="form-container" style="display:none">
+      <input id="inp-id" placeholder="Command ID (e.g. CMD-006)">
+      <select id="inp-type">
+        <option>MOVE</option>
+        <option>GRIP</option>
+        <option>WELD</option>
+        <option>INSPECT</option>
+        <option>RELEASE</option>
+      </select>
+      <input id="inp-joint" placeholder="Joint (e.g. Axis-Z)">
+      <input id="inp-detail" placeholder="Detail (e.g. Extend 80mm)">
+      <button id="btn-submit">Add to Queue</button>
+    </div>
+
+    <h3>Execution Log</h3>
+    <div id="log-list"></div>
+  </section>
+
+  <!-- ✅ ES Modules activos -->
+  <script type="module" src="dist/main.js"></script>
+</body>
+
+</html>
